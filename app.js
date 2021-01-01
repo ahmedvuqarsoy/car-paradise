@@ -13,17 +13,6 @@ require('./config/passport')(passport);
 // DB Connection
 mongoose.connect('mongodb://localhost:27017/car-dealer', {useUnifiedTopology: true, useNewUrlParser: true});
 
-// // DB Config
-// const db = require('./config/keys').mongoURI;
-
-// // Connect to MongoDB
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true ,useUnifiedTopology: true}
-//   )
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
 
 // EJS
 app.use(expressLayouts);
