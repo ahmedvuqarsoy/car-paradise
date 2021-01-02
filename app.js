@@ -11,7 +11,9 @@ const app = express();
 require('./config/passport')(passport);
 
 // DB Connection
-mongoose.connect('mongodb://localhost:27017/car-dealer', {useUnifiedTopology: true, useNewUrlParser: true});
+mongoose.connect('mongodb://localhost:27017/car-dealer', {useUnifiedTopology: true, useNewUrlParser: true})
+  .then(() => console.log("Successfully connect to MongoDB."))
+  .catch(err => console.error("Connection Error: ", err));
 
 
 // EJS
@@ -48,6 +50,7 @@ app.use(function(req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+app.use('/car', require('./routes/car.js'));
 
 const PORT = process.env.PORT || 5000;
 

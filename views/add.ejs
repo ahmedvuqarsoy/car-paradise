@@ -1,0 +1,127 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user-plus"></i> Add Car
+        </h1>
+        <%- include ("./partials/messages"); %>
+        <form action="/car/add" method="POST">
+          <div class="form-group">
+            <label for="name">Brand</label>
+            <input
+              type="text"
+              id="brand"
+              name="brand"
+              class="form-control"
+              placeholder="Car Brand (Porsche)"
+              value="<%= typeof brand != 'undefined' ? brand : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">model</label>
+            <input
+              type="text"
+              id="model"
+              name="model"
+              class="form-control"
+              placeholder="Car model (Porsche)"
+              value="<%= typeof model != 'undefined' ? model : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">bodyType</label>
+            <input
+              type="text"
+              id="bodyType"
+              name="bodyType"
+              class="form-control"
+              placeholder="Car bodyType (Porsche)"
+              value="<%= typeof bodyType != 'undefined' ? bodyType : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">year</label>
+            <input
+              type="text"
+              id="year"
+              name="year"
+              class="form-control"
+              placeholder="Car year (Porsche)"
+              value="<%= typeof year != 'undefined' ? year : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">color</label>
+            <input
+              type="text"
+              id="color"
+              name="color"
+              class="form-control"
+              placeholder="Car color (Porsche)"
+              value="<%= typeof color != 'undefined' ? color : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">mileage</label>
+            <input
+              type="text"
+              id="mileage"
+              name="mileage"
+              class="form-control"
+              placeholder="Car mileage (Porsche)"
+              value="<%= typeof mileage != 'undefined' ? mileage : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">engine</label>
+            <input
+              type="text"
+              id="engine"
+              name="engine"
+              class="form-control"
+              placeholder="Car engine (Porsche)"
+              value="<%= typeof engine != 'undefined' ? engine : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">volumetric</label>
+            <input
+              type="text"
+              id="volumetric"
+              name="volumetric"
+              class="form-control"
+              placeholder="Car volumetric (Porsche)"
+              value="<%= typeof volumetric != 'undefined' ? volumetric : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">location</label>
+            <input
+              type="text"
+              id="location"
+              name="location"
+              class="form-control"
+              placeholder="Car location (Porsche)"
+              value="<%= typeof location != 'undefined' ? location : '' %>"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">description</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              class="form-control"
+              placeholder="Car description (Porsche)"
+              value="<%= typeof description != 'undefined' ? description : '' %>"
+            />
+          </div> 
+          <button type="submit" class="btn btn-primary btn-block">
+            Add Car
+          </button>
+        </form>
+        <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+      </div>
+    </div>
+  </div>
+  
