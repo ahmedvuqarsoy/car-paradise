@@ -1,6 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
+
+// Static Files Folder
+router.use(express.static(__dirname + './public'));
+
+var Storage = multer.diskStorage({
+    destination:'./public/uploads/',
+    filename:(req, file, cb) => {
+        cb(null, file.fieldname+"_"+Date.now()+path.extname(file.originalname));
+    }
+})
+
+var upload = multer({storage: Storage}).single('file');
+
 const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
+
+   
 
 const Car = require('../models/Car');
 
@@ -14,7 +32,7 @@ router.get('/add', ensureAuthenticated, (req, res) =>
   })
 );
 
-router.post('/add', (req, res) => {
+router.post('/add', upload, (req, res) => {
     const {brand, model, bodyType, year, color, mileage, engine, volumetric, location, description} = req.body;
     let errors = [];
     if (!brand, !model, !bodyType, !year, !color, !mileage, !engine, !volumetric, !location, !description) {
@@ -25,6 +43,11 @@ router.post('/add', (req, res) => {
     console.log(req.body);
     console.log(owner);
     console.log(req.user);
+
+    // const image = req.body.file;
+    const img = req.file.filename;
+    console.log('img: ', img);
+
 
     if (errors.length > 0) {
         res.render('add', {
@@ -38,9 +61,10 @@ router.post('/add', (req, res) => {
             engine,
             volumetric,
             location,
-            description
+            description,
         });
     } else {
+
         const newCar = new Car({
             brand,
             model,
@@ -52,8 +76,10 @@ router.post('/add', (req, res) => {
             volumetric,
             location,
             description,
+            img,
             owner
         });
+
 
         newCar
             .save()

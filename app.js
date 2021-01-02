@@ -4,8 +4,14 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
+
+// Static Files
+app.use( express.static( "public" ));
 
 // Passport Config
 require('./config/passport')(passport);
@@ -19,6 +25,8 @@ mongoose.connect('mongodb://localhost:27017/car-dealer', {useUnifiedTopology: tr
 // EJS
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
+
+ 
 
 // Express body parser
 app.use(express.urlencoded({ extended: true }));

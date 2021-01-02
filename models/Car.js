@@ -41,6 +41,7 @@ const carSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    img: String,
     owner: String
 });
 
