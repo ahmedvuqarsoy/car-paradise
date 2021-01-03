@@ -8,11 +8,29 @@
     <title>Document</title>
 </head>
 <body>
-    <nav>
-        <a href="/users/logout" class="btn btn-secondary">Logout</a>
-        <a href="/car/add" class="btn btn-secondary">Add Car</a>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Car Paradise</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="/dashboard">Dashboard<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/car/add">Add Car</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Logout</a>
+            </li> -->
+          </ul>
+        </div>
     </nav>
-    <p class="lead mb-3">Welcome <%= user.name %></p>
+    <p style="color: white;" class="lead mb-3">Welcome, <%= user.name %></p>
+
+
 
     <div class="container py-5">
         <div class="row text-center text-white mb-5">
@@ -42,7 +60,7 @@
                     </li> <!-- End -->
                     <% }) %>
                 <% } else { %> 
-                    <p>No cars in this user.</p>
+                    <h1>Why you don't add cars?</h1>
                 <% } %> 
                 </ul> <!-- End -->
             </div>
