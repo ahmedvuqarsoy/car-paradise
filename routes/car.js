@@ -37,6 +37,19 @@ router.get('/', (req, res) => {
       });
 });
 
+router.post('/', (req,res) => {
+    if(req.body.brand){
+        const brand = req.body.brand;
+        const cars = Car.find({brand: brand}, (error, data) => {
+            if(error){
+                console.log(error);
+            } else {
+                res.render('all', {cars: data})
+            }
+        })
+    }
+})
+
 
 router.get('/add', ensureAuthenticated, (req, res) =>
   res.render('add', {
