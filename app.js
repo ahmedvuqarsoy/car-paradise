@@ -7,11 +7,12 @@ const session = require('express-session');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const { ensureAuthenticated } = require('./config/auth');
 
 const app = express();
 
 // Static Files
-app.use( express.static( "public" ));
+app.use(express.static(__dirname + "/public" ));
 
 // Passport Config
 require('./config/passport')(passport);
@@ -55,10 +56,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
 app.use('/car', require('./routes/car.js'));
+
 
 const PORT = process.env.PORT || 5000;
 

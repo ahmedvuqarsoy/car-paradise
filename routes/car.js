@@ -21,6 +21,7 @@ const { ensureAuthenticated, forwardAuthenticated } = require('../config/auth');
    
 
 const Car = require('../models/Car');
+const { render } = require('ejs');
 
 router.get('/', (req, res) => {
     res.send('/car page');
@@ -33,12 +34,14 @@ router.get('/add', ensureAuthenticated, (req, res) =>
 );
 
 router.post('/add', upload, (req, res) => {
-    const {brand, model, bodyType, year, color, mileage, engine, volumetric, location, description} = req.body;
+    const {brand, model, bodyType, year, color, mileage, engine, volumetric, location, description, price} = req.body;
     let errors = [];
     if (!brand, !model, !bodyType, !year, !color, !mileage, !engine, !volumetric, !location, !description) {
         errors.push({msg: 'Please enter all fields'});
     }
     owner = req.user._id;
+    ownerName = req.user.name;
+    ownerMail = req.user.email;
 
     console.log(req.body);
     console.log(owner);
@@ -62,6 +65,7 @@ router.post('/add', upload, (req, res) => {
             volumetric,
             location,
             description,
+            price,
         });
     } else {
 
@@ -74,10 +78,13 @@ router.post('/add', upload, (req, res) => {
             mileage,
             engine,
             volumetric,
+            price,
             location,
             description,
             img,
-            owner
+            owner,
+            ownerMail,
+            ownerName
         });
 
 
@@ -92,5 +99,42 @@ router.post('/add', upload, (req, res) => {
             .catch(err => console.log(err));
     }
 });
+
+// Detail Page
+router.get('/:id', ensureAuthenticated, (req, res) => {
+    const id = req.params.id;
+    Car.findById(id)
+        .then(result => {
+            res.render('details', {user: req.user, car: result})
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
+router.delete('/:id', ensureAuthenticated, (req, res) => {
+    const id = req.params.id;
+    Car.findByIdAndDelete(id)
+    .then(result => {
+        res.json({ redirect: '/dashboard'})
+    })
+    .catch(err => {
+        console.log(err);
+    })
+})
+
+
+// Edit
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
+    const id = req.params.id;
+    Car.findById(id)
+        .then(result => {
+            res.render('edit', {user: req.user, car: result})
+        })
+        .catch(err => {
+            console.log(err);
+        })
+})
+
 
 module.exports = router;

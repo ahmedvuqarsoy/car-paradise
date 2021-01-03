@@ -1,0 +1,14 @@
+nav {
+  margin-bottom: 5%;
+}
+
+.card {
+  display: inline-block;
+  float: left;
+  margin-right: 1%;
+  margin-bottom: 1%;
+}
+
+.card-img-top {
+  object-fit: scale-down;
+}

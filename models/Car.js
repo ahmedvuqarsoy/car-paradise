@@ -33,6 +33,10 @@ const carSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    price: {
+        type: Number,
+        required: true
+    },
     location: {
         type: String,
         required: true
@@ -42,6 +46,8 @@ const carSchema = new mongoose.Schema({
         required: true
     },
     img: String,
+    ownerName: String,
+    ownerMail: String,
     owner: String
 });
 
