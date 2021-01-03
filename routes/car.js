@@ -24,8 +24,19 @@ const Car = require('../models/Car');
 const { render } = require('ejs');
 
 router.get('/', (req, res) => {
-    res.send('/car page');
+
+    const car = Car.find((error, data) => {
+        if(error){
+          console.log(error);
+        }else {
+          // console.log(data);
+          res.render('all', {
+            cars: data
+          });
+        }
+      });
 });
+
 
 router.get('/add', ensureAuthenticated, (req, res) =>
   res.render('add', {

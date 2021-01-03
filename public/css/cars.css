@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
+
+body {
+  background: linear-gradient(to right, #c04848, #480048);
+  background-color: black;
+}
+
+.carBox {
+  background-color: white;
+}
+
+.wrapper {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-color: #000;
+  clip-path: polygon(81% 0, 100% 0, 100% 50%, 100% 100%, 71% 100%);
+  transition: 1s all;
+}
+
+.all-show {
+  z-index: 10;
+}
+
+.suction {
+  font-size: 12px;
+}
+
+.btn-success {
+  border-radius: 4px;
+  background-color: red;
+  border-color: red;
+}
+
+.btn-success:hover {
+  border-radius: 4px;
+  background-color: red;
+  border-color: red;
+}
